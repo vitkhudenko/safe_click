@@ -1,0 +1,85 @@
+plugins {
+    id 'com.android.library'
+    id 'maven-publish'
+    id 'kotlin-android'
+}
+
+def libraryVersionName = '1.0.0'
+def artifactName = 'SafeClick'
+
+android {
+
+    buildFeatures {
+        buildConfig = false
+    }
+
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+        test.java.srcDirs += 'src/test/kotlin'
+    }
+
+    compileSdk 31
+    buildToolsVersion '31.0.0'
+
+    defaultConfig {
+        minSdk 21
+        targetSdk 31
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+task sourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+}
+
+dependencies {
+    testImplementation 'junit:junit:4.13.2'
+    testImplementation 'io.mockk:mockk:1.12.0'
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+
+                from components.release
+
+                groupId 'com.github.vitkhudenko'
+                artifactId 'safe_click'
+                version libraryVersionName
+
+                artifacts {
+                    artifact sourcesJar {
+                        classifier 'sources'
+                    }
+                }
+
+                pom {
+                    name = artifactName
+                    description = 'A solution to redundant click handling for Android development.'
+                    url = 'https://github.com/vitkhudenko/safe_click'
+                    licenses {
+                        license {
+                            name = 'MIT'
+                            url = 'https://github.com/vitkhudenko/safe_click/blob/master/LICENSE'
+                        }
+                    }
+                }
+
+            }
+        }
+    }
+}
