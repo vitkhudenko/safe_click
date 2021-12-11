@@ -2,6 +2,7 @@ plugins {
     id 'com.android.library'
     id 'maven-publish'
     id 'kotlin-android'
+    id 'org.jetbrains.kotlinx.kover' version "$kover_version"
 }
 
 def libraryVersionName = '1.0.0'
@@ -39,6 +40,24 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    testOptions {
+        unitTests.all {
+            if (name == "testReleaseUnitTest") {
+                kover {
+                    enabled = true
+                }
+            }
+        }
+    }
+}
+
+tasks.koverHtmlReport {
+    enabled = true
+    htmlReportDir.set(file("/reports/kover"))
+}
+
+tasks.koverXmlReport {
+    enabled = false
 }
 
 task sourcesJar(type: Jar) {
