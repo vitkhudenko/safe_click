@@ -5,7 +5,7 @@ plugins {
     id 'org.jetbrains.kotlinx.kover' version "$kover_version"
 }
 
-def libraryVersionName = '1.0.0'
+def libraryVersionName = '1.0.1'
 def artifactName = 'SafeClick'
 
 android {
