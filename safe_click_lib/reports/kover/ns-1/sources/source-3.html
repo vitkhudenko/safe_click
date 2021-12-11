@@ -1,0 +1,137 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > SafeClickListener</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/highlight-idea.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">vit.khudenko.android.safe_click</a>
+</div>
+
+<h1>Coverage Summary for Class: SafeClickListener (vit.khudenko.android.safe_click)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">SafeClickListener</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (2/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (3/3)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">SafeClickListener$Companion</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (2/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (3/3)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package vit.khudenko.android.safe_click
+<i class="no-highlight">2</i>&nbsp;
+<i class="no-highlight">3</i>&nbsp;import android.view.View
+<i class="no-highlight">4</i>&nbsp;
+<i class="no-highlight">5</i>&nbsp;/**
+<i class="no-highlight">6</i>&nbsp; * @param action action to be invoked on a click event
+<i class="no-highlight">7</i>&nbsp; * @param debounceTimeoutMillis optional debounce timeout in milliseconds. If omitted, then 1 second is used.
+<i class="no-highlight">8</i>&nbsp; *
+<i class="no-highlight">9</i>&nbsp; * @throws IllegalArgumentException if [debounceTimeoutMillis] parameter is negative
+<i class="no-highlight">10</i>&nbsp; */
+<i class="no-highlight">11</i>&nbsp;class SafeClickListener(
+<b class="fc"><i class="no-highlight">12</i>&nbsp;    private val action: (view: View) -&gt; Unit,</b>
+<i class="no-highlight">13</i>&nbsp;    debounceTimeoutMillis: Long = DEFAULT_DEBOUNCE_TIMEOUT_MS,
+<b class="fc"><i class="no-highlight">14</i>&nbsp;) : DebouncingClickListener(debounceTimeoutMillis) {</b>
+<i class="no-highlight">15</i>&nbsp;
+<i class="no-highlight">16</i>&nbsp;    companion object {
+<i class="no-highlight">17</i>&nbsp;        const val DEFAULT_DEBOUNCE_TIMEOUT_MS = 1000L // 1 sec by default
+<i class="no-highlight">18</i>&nbsp;    }
+<i class="no-highlight">19</i>&nbsp;
+<b class="fc"><i class="no-highlight">20</i>&nbsp;    override fun onClickAction(v: View) = action.invoke(v)</b>
+<i class="no-highlight">21</i>&nbsp;
+<i class="no-highlight">22</i>&nbsp;}
+</div>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+        var codeBlock = document.getElementById('sourceCode');
+
+        if (codeBlock) {
+            hljs.highlightBlock(codeBlock);
+        }
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2021-12-11 17:39</div>
+</div>
+</body>
+</html>
