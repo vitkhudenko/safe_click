@@ -36,6 +36,10 @@ val listener = SafeClickListener(action = { /* do something */ })
 button.setOnClickListener(listener)
 ```
 
+### Test coverage
+
+[Test Coverage report][test_coverage]
+
 ### License
 
 > MIT License
@@ -59,3 +63,5 @@ button.setOnClickListener(listener)
 > LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 > OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 > SOFTWARE.
+
+[test_coverage]: https://rawcdn.githack.com/vitkhudenko/safe_click/a8ffe6f91a836cf9de4fd18374c3101be4957a76/safe_click_lib/reports/kover/index.html
