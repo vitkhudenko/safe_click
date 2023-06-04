@@ -18,7 +18,7 @@ allprojects {
 At a module level `build.gradle`, add the following dependency:
 
 ```groovy
-implementation 'com.github.vitkhudenko:safe_click:1.0.2'
+implementation 'com.github.vitkhudenko:safe_click:1.0.4'
 ```
 
 ### Usage

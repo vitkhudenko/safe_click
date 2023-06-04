@@ -5,22 +5,19 @@ plugins {
     id 'org.jetbrains.kotlinx.kover' version "$kover_version"
 }
 
-def libraryVersionName = '1.0.2'
+def libraryVersionName = '1.0.4'
 def artifactName = 'SafeClick'
 
 android {
-
-    buildFeatures {
-        buildConfig = false
-    }
+    namespace 'vit.khudenko.android.safe_click'
 
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
         test.java.srcDirs += 'src/test/kotlin'
     }
+    compileSdk 33
 
-    compileSdk 32
-    buildToolsVersion '33.0.0'
+    buildToolsVersion '33.0.2'
 
     defaultConfig {
         minSdk 21
@@ -49,6 +46,12 @@ android {
             }
         }
     }
+    publishing {
+        singleVariant("release") {
+            withSourcesJar()
+            // withJavadocJar()
+        }
+    }
 }
 
 tasks.koverHtmlReport {
@@ -60,13 +63,9 @@ tasks.koverXmlReport {
     enabled = false
 }
 
-task sourcesJar(type: Jar) {
-    from android.sourceSets.main.java.srcDirs
-}
-
 dependencies {
     testImplementation 'junit:junit:4.13.2'
-    testImplementation 'io.mockk:mockk:1.12.4'
+    testImplementation 'io.mockk:mockk:1.13.5'
 }
 
 afterEvaluate {
@@ -79,12 +78,6 @@ afterEvaluate {
                 groupId 'com.github.vitkhudenko'
                 artifactId 'safe_click'
                 version libraryVersionName
-
-                artifacts {
-                    artifact sourcesJar {
-                        classifier 'sources'
-                    }
-                }
 
                 pom {
                     name = artifactName
